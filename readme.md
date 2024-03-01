@@ -77,7 +77,15 @@
     sudo apt install -y ros-noetic-pcl-ros ros-noetic-velodyne-msgs libopencv-dev libgoogle-glog-dev libeigen3-dev libsuitesparse-dev libpcl-dev libyaml-cpp-dev libbtbb-dev libgmock-dev
     ```
     - Pangolin: 编译安装thirdparty/pangolin.zip，或者 https://github.com/stevenlovegrove/Pangolin
-    - 编译thirdparty/g2o，或者自行编译安装 https://github.com/RainerKuemmerle/g2o 
+    -     将zip解压到Pangolin文件夹中，在Pangolin里打开终端，之后输入
+            ```bash
+            mkdir build
+            cd build
+            cmake ..
+            make -j8
+            ```
+    - 编译thirdparty/g2o，或者自行编译安装 https://github.com/RainerKuemmerle/g2o
+    -     同上
     - 通过cmake, make安装本repo下的`thirdparty/g2o`库
 - 之后，使用通常的cmake, make方式就可以编译本书所有内容了。例如
 ```bash
@@ -88,15 +96,15 @@ make -j8
 ```
 - 编译后各章的可执行文件位于`bin`目录下
 
-### 适配Ubuntu18.04
+### 适配Ubuntu18.04(有改动)
 
-为了在Ubuntu18.04上编译运行，需要安装gcc-9，并且使用对应版本的TBB。或者在docker环境下使用。
+为了在Ubuntu18.04上编译运行，需要安装gcc-9，并且使用对应版本的TBB。
 
 **安装gcc-9**
 ```bash
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-sudo update-alternatives --remove-all gcc
-sudo update-alternatives --remove-all g++
+sudo apt update
+sudo apt install gcc-9 g++-9
 
 #命令最后的1和10是优先级，如果使用auto选择模式，系统将默认使用优先级高的
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 1
@@ -111,7 +119,7 @@ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-9 10
 g++ -v
 ```
 
-**编译程序**
+**编译程序**（这部分没运行）
 ```bash
 mkdir build
 cd build
