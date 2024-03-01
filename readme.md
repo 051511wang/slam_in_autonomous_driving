@@ -127,9 +127,9 @@ cmake .. -DBUILD_WITH_UBUNTU1804=ON
 make -j8
 ```
 
-**在docker环境下使用**
+**在docker环境下使用**(进入根目录执行)
 ```bash
-docker build -t sad:v1 .
+sudo docker build -t sad:v1 .
 ./docker/docker_run.sh
 ```
 进入docker容器后
